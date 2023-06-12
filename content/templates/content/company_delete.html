@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete company</title>
+</head>
+<body>
+<h2>Вы уверены что хотите удалить {{ company.name }} ? </h2>
+<p><a href="{% url 'company' company.pk %}"><button>Cansel</button></a></p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company</title>
+</head>
+<body>
+<h2>Компания: </h2>
+<p>Наименование: <b>{{ company.name }}</b></p>
+<p>Слаг: <b>{{ company.slug }}</b></p>
+<p>Адрес: <b>{{ company.address }}</b></p>
+<p>Электронный адрес: <b>{{ company.email }}</b></p>
+
+<p><a href="{% url 'update_company' company.pk %}">Редактировать</a></p>
+<p><a href="{% url 'delete_company' company.pk %}">Delete</a></p>
+
+</body>
+</html>

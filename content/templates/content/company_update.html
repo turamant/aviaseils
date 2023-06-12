@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company Update</title>
+</head>
+<body>
+<h2>Изменение данных компании</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+<p><a href="{% url 'companies'%}"><button>Cansel</button></a></p>
+
+</body>
+</html>
