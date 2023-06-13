@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AirPlane Flights</title>
+</head>
+<body>
+<h2>AirPlane Flights</h2>
+<h2>Model: {{ airplane.model }}</h2>
+<ul>
+{% for f in flights %}
+    <li>Рейс: {{ f }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>

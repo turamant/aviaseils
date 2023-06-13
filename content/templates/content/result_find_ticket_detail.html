@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Ticket</title>
+</head>
+<body>
+
+<p>Номер рейса: {{ ticket.number_flight }}</p>
+<p>Plane: {{ ticket.airplane }}</p>
+<p>Компания: {{ ticket.company }}</p>
+<p>Вылет из: {{ ticket.departure_city }}</p>
+<p>Прилет в: {{ ticket.arrival_city }}</p>
+<p>Дата вылета: {{ ticket.data_departure }}</p>
+<p>Время вылета: {{ ticket.time_departure }}</p>
+<p>Дата прилета: {{ ticket.data_arrive }}</p>
+<p>Цена: {{ ticket.price }}</p>
+
+
+<p><a href="{% url 'find_ticket_data' %}">К поиску по дате</a></p>
+<p><a href="{% url 'find_ticket' %}">К поиску по городам вылета-прилета</a></p>
+<p><a href="{% url 'index' %}">К главной</a></p>
+
+
+</body>
+</html>

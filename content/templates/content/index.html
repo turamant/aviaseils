@@ -7,8 +7,13 @@
 <body>
 <h2>Index Page</h2>
 <ul>
-<li><a href="{% url 'create_company'%}">Создать новуб компанию</a></li>
+<li><a href="{% url 'create_company' %}">Создать новуб компанию</a></li>
+<li><a href="{% url 'create_flight' %}">Создать новый рейс</a></li>
 <li><a href="{% url 'companies' %}">Все авиа-компании</a></li>
+<li><a href="{% url 'find_ticket' %}">Поиск рейсов по городам</a></li>
+<li><a href="{% url 'find_ticket_data' %}">Поиск рейсов по городам и ДАТАМ</a></li>
+    <li><a href="{% url 'airplanes' %}">Все самолеты</a></li>
+
 </ul>
 </body>
 </html>
