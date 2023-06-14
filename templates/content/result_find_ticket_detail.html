@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Detail Ticket</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Result of find ticket DETAIL{% endblock %}
+
+{% block content %}
 
 <p>Номер рейса: {{ ticket.number_flight }}</p>
 <p>Plane: {{ ticket.airplane }}</p>
@@ -15,6 +13,8 @@
 <p>Время вылета: {{ ticket.time_departure }}</p>
 <p>Дата прилета: {{ ticket.data_arrive }}</p>
 <p>Цена: {{ ticket.price }}</p>
+
+{% endblock %}
 
 
 <p><a href="{% url 'find_ticket_data' %}">К поиску по дате</a></p>

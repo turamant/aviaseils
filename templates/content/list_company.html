@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>List Companies</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}List companies {% endblock %}
+
+{% block content %}
 <h2>Список компаний!!!</h2>
 <ul>
 {% for company in companies %}
   <li><a href="{{ company.get_absolute_url }}">{{ company.name }}</a></li>
 {% endfor %}
 </ul>
-</body>
-</html>
+
+{% endblock %}

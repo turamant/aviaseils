@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>All airplanes</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}All Planes{% endblock %}
+
+{% block content %}
 <h2>Все самолеты</h2>
 {% for air in airplanes %}
 <p><a href="{% url 'airplane_flights' air.pk %}"> {{ air.model }}</a></p>
 {% endfor %}
-</body>
-</html>
+{% endblock %}

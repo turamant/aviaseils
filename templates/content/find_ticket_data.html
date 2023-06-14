@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Find Ticket</title>
-</head>
-<body>
-<h2>Find ticket Data</h2>
+{% extends "base.html" %}
+
+{% block title %}Find ticket date{% endblock %}
+
+{% block content %}
+
+<h2>Find ticket Date</h2>
 <form method="POST">
         {% csrf_token %}
     <table>
@@ -14,6 +13,4 @@
     <input type="submit" value="Send" >
 </form>
 
-
-</body>
-</html>
+{% endblock %}

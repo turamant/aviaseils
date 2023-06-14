@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Company Update</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Update company{% endblock %}
+
+{% block content %}
 <h2>Изменение данных компании</h2>
 <form method="post">
     {% csrf_token %}
@@ -13,5 +11,4 @@
 </form>
 <p><a href="{% url 'companies'%}"><button>Cansel</button></a></p>
 
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index Page</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
 <h2>Index Page</h2>
 <ul>
 <li><a href="{% url 'create_company' %}">Создать новуб компанию</a></li>
@@ -15,5 +13,4 @@
     <li><a href="{% url 'airplanes' %}">Все самолеты</a></li>
 
 </ul>
-</body>
-</html>
+{% endblock %}

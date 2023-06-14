@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>AirPlane Flights</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}AirPlane Flights{% endblock %}
+
+{% block content %}
 <h2>AirPlane Flights</h2>
 <h2>Model: {{ airplane.model }}</h2>
 <ul>
@@ -12,5 +10,4 @@
     <li>Рейс: {{ f }}</li>
 {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}
