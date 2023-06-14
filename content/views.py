@@ -122,6 +122,7 @@ def get_airplanes(request):
     }
     return render(request, 'content/airplanes.html', context)
 
+
 def airplane_flights(request, pk):
     airplane = get_object_or_404(AirPlane, pk=pk)
     flights = services.get_airplane_flights(airplane)

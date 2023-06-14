@@ -88,6 +88,14 @@ class Flight(models.Model):
     def __str__(self):
         return self.number_flight
 
+    class Client(models.Model):
+        last_name = models.CharField(max_length=100, verbose_name='Фамилия')
+        first_name = models.CharField(max_length=100, verbose_name='Имя')
+        passport_number = models.CharField(max_length=13, verbose_name='Номер паспорта')
+        email = models.CharField(max_length=100, verbose_name='Электронный ящик')
+        phone_number = models.CharField(max_length=13, verbose_name='Номер телефона')
+
+
 
 
 
