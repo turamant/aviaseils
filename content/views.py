@@ -30,69 +30,69 @@ def get_company(request, pk):
 
 def create_company(request):
     form = CompanyForm()
-    if request.method == "POST":
+    if request.method == 'POST':
         form = CompanyForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect('/')
 
     context = {
-        "form": form
+        'form': form
     }
-    return render(request, "content/company_create.html", context)
+    return render(request, 'content/company_create.html', context)
 
 
 def update_company(request, pk):
     company = get_object_or_404(Company, id=pk)
     form = CompanyForm(instance=company)
-    if request.method == "POST":
+    if request.method == 'POST':
         form = CompanyForm(request.POST, instance=company)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect('/')
 
     context = {
-        "form": form,
+        'form': form,
     }
-    return render(request, "content/company_update.html", context)
+    return render(request, 'content/company_update.html', context)
 
 
 def delete_company(request, pk):
     company = get_object_or_404(Company, id=pk)
-    if request.method == "POST":
+    if request.method == 'POST':
         company.delete()
-        return redirect("/")
-    return render(request, "content/company_delete.html", {'company': company})
+        return redirect('/')
+    return render(request, 'content/company_delete.html', {'company': company})
 
 
 def find_ticket(request):
     """ Поиск по городам вылета и прилета"""
-    if request.method == "POST":
-        city1 = request.POST.get("city1")
-        city2 = request.POST.get("city2")
+    if request.method == 'POST':
+        city1 = request.POST.get('city1')
+        city2 = request.POST.get('city2')
         flights = get_flight_with_city(city1, city2)
         context = {'row': flights}
-        return render(request, "content/result_find_ticket.html", context)
+        return render(request, 'content/result_find_ticket.html', context)
 
     else:
         form = FindTicketForm()
         context = {'form': form}
-        return render(request, "content/find_ticket.html", context)
+        return render(request, 'content/find_ticket.html', context)
 
 
 def find_ticket_data(request):
     """ Поиск по городам вылета и прилета"""
-    if request.method == "POST":
-        city1 = request.POST.get("city1")
-        city2 = request.POST.get("city2")
-        data_depart = request.POST.get("data_depart")
+    if request.method == 'POST':
+        city1 = request.POST.get('city1')
+        city2 = request.POST.get('city2')
+        data_depart = request.POST.get('data_depart')
         flights = get_flight_with_city_and_data(city1, city2, data_depart)
         context = {'row': flights}
-        return render(request, "content/result_find_ticket_data.html", context)
+        return render(request, 'content/result_find_ticket_data.html', context)
     else:
         form = FindTicketDataForm()
         context = {'form': form}
-        return render(request, "content/find_ticket_data.html", context)
+        return render(request, 'content/find_ticket_data.html', context)
 
 
 def find_ticket_detail(request, idd):
@@ -103,22 +103,22 @@ def find_ticket_detail(request, idd):
 
 def create_flight(request):
     form = FlightForm()
-    if request.method == "POST":
+    if request.method == 'POST':
         form = FlightForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect('/')
 
     context = {
-        "form": form
+        'form': form
     }
-    return render(request, "content/flight_create.html", context)
+    return render(request, 'content/flight_create.html', context)
 
 
 def get_airplanes(request):
     airplanes = AirPlane.objects.all()
     context ={
-        "airplanes": airplanes
+        'airplanes': airplanes
     }
     return render(request, 'content/airplanes.html', context)
 

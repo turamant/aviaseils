@@ -67,9 +67,9 @@ class Flight(models.Model):
                                 related_name='flights',
                                 verbose_name='компания')
     departure_city = models.ForeignKey(City,
-                                     on_delete=models.CASCADE,
-                                     related_name='flights_dep',
-                                     verbose_name='город отправления',
+                                       on_delete=models.CASCADE,
+                                       related_name='flights_dep',
+                                       verbose_name='город отправления',
                                      )
     arrival_city = models.ForeignKey(City,
                                      on_delete=models.CASCADE,
