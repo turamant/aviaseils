@@ -37,6 +37,7 @@ class FlightForm(forms.ModelForm):
     company = forms.ModelChoiceField(queryset=Company.objects.all())
     departure_city = forms.ModelChoiceField(queryset=City.objects.all())
     arrival_city = forms.ModelChoiceField(queryset=City.objects.all())
+
     class Meta:
         model = Flight
         fields = '__all__'

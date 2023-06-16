@@ -15,17 +15,23 @@ def index(request):
     return render(request, 'content/index.html')
 
 
+def all_flights(request):
+    flights = Flight.objects.all()
+    print(flights)
+    context = {'flights': flights}
+    return render(request, 'content/flight/flights_all.html', context)
+
+
 def list_company(request):
     companies = Company.objects.all()
-    #companies = Company.objects.raw('SELECT * FROM company')
     context = {'companies': companies}
-    return render(request, 'content/list_company.html', context)
+    return render(request, 'content/company/list_company.html', context)
 
 
 def get_company(request, pk):
     company = get_object_or_404(Company, id=pk)
     context = {'company': company}
-    return render(request, 'content/company.html', context)
+    return render(request, 'content/company/company.html', context)
 
 
 def create_company(request):
@@ -39,7 +45,7 @@ def create_company(request):
     context = {
         'form': form
     }
-    return render(request, 'content/company_create.html', context)
+    return render(request, 'content/company/company_create.html', context)
 
 
 def update_company(request, pk):
@@ -54,7 +60,7 @@ def update_company(request, pk):
     context = {
         'form': form,
     }
-    return render(request, 'content/company_update.html', context)
+    return render(request, 'content/company/company_update.html', context)
 
 
 def delete_company(request, pk):
@@ -62,25 +68,25 @@ def delete_company(request, pk):
     if request.method == 'POST':
         company.delete()
         return redirect('/')
-    return render(request, 'content/company_delete.html', {'company': company})
+    return render(request, 'content/company/company_delete.html', {'company': company})
 
 
-def find_ticket(request):
+def find_flights(request):
     """ Поиск по городам вылета и прилета"""
     if request.method == 'POST':
         city1 = request.POST.get('city1')
         city2 = request.POST.get('city2')
         flights = get_flight_with_city(city1, city2)
         context = {'row': flights}
-        return render(request, 'content/result_find_ticket.html', context)
+        return render(request, 'content/flight/result_find_flights.html', context)
 
     else:
         form = FindTicketForm()
         context = {'form': form}
-        return render(request, 'content/find_ticket.html', context)
+        return render(request, 'content/flight/find_flights.html', context)
 
 
-def find_ticket_data(request):
+def find_flights_data(request):
     """ Поиск по городам вылета и прилета"""
     if request.method == 'POST':
         city1 = request.POST.get('city1')
@@ -88,17 +94,17 @@ def find_ticket_data(request):
         data_depart = request.POST.get('data_depart')
         flights = get_flight_with_city_and_data(city1, city2, data_depart)
         context = {'row': flights}
-        return render(request, 'content/result_find_ticket_data.html', context)
+        return render(request, 'content/flight/result_find_flights_data.html', context)
     else:
         form = FindTicketDataForm()
         context = {'form': form}
-        return render(request, 'content/find_ticket_data.html', context)
+        return render(request, 'content/flight/find_flights_data.html', context)
 
 
-def find_ticket_detail(request, idd):
+def find_flight_detail(request, idd):
     ticket = get_object_or_404(Flight, id=idd)
     context = {'ticket': ticket}
-    return render(request, 'content/result_find_ticket_detail.html', context)
+    return render(request, 'content/flight/result_find_flight_detail.html', context)
 
 
 def create_flight(request):
@@ -112,7 +118,7 @@ def create_flight(request):
     context = {
         'form': form
     }
-    return render(request, 'content/flight_create.html', context)
+    return render(request, 'content/flight/flight_create.html', context)
 
 
 def get_airplanes(request):
@@ -120,13 +126,15 @@ def get_airplanes(request):
     context ={
         'airplanes': airplanes
     }
-    return render(request, 'content/airplanes.html', context)
+    return render(request, 'content/airplane/airplanes.html', context)
 
 
 def airplane_flights(request, pk):
     airplane = get_object_or_404(AirPlane, pk=pk)
     flights = services.get_airplane_flights(airplane)
-    return render(request, 'content/airplane_flights.html', {
+    return render(request, 'content/airplane/airplane_flights.html', {
         'airplane': airplane,
         'flights': flights,
     })
+
+
