@@ -11,7 +11,7 @@
 
 <ul>
 {% for r in row %}
-    <li><a href="{% url 'find_flight_detail' r.0 %}">{{ r.6|date }}||{{ r.5 }} -> {{ r.4 }}||Вылет:{{ r.7 }}
+    <li><a href="{% url 'flight_detail' r.0 %}">{{ r.6|date }}||{{ r.5 }} -> {{ r.4 }}||Вылет:{{ r.7 }}
         ||{{ r.6|time }}|| Компания: {{ r.3 }} || Рейс:{{ r.1 }} ||Цена: {{ r.9 }}$</a></li>
 {% endfor %}
 </ul>

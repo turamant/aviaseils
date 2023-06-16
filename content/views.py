@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from content import services
-from content.forms import CompanyForm, FindTicketForm, FindTicketDataForm, FlightForm
+from content.forms import CompanyForm, FindTicketForm, FindTicketDataForm, FlightForm, FlightFilterForm
 from content.models import Company, Flight, AirPlane
 from content.services import get_flight_with_city_and_data, get_flight_with_city
 
@@ -15,23 +15,76 @@ def index(request):
     return render(request, 'content/index.html')
 
 
-def all_flights(request):
+def flight_list(request):
     flights = Flight.objects.all()
-    print(flights)
-    context = {'flights': flights}
-    return render(request, 'content/flight/flights_all.html', context)
+    form = FlightFilterForm(request.GET)
+    if form.is_valid():
+        if form.cleaned_data['min_price']:
+            flights = flights.filter(price__gte=form.cleaned_data['min_price'])
+        if form.cleaned_data['max_price']:
+            flights = flights.filter(price__lte=form.cleaned_data['max_price'])
+        if form.cleaned_data['ordering']:
+            flights = flights.order_by(form.cleaned_data['ordering'])
 
 
-def list_company(request):
+    context = {'flights': flights,
+               'form': form}
+    return render(request, 'content/flight/flight_list.html', context)
+
+
+def flight_detail(request, flight_id):
+    flight = get_object_or_404(Flight, id=flight_id)
+    context = {'flight': flight}
+    return render(request, 'content/flight/flight_detail.html', context)
+
+
+def create_flight(request):
+    form = FlightForm()
+    if request.method == 'POST':
+        form = FlightForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'content/flight/flight_create.html', context)
+
+
+def update_flight(request, flight_id):
+    flight = get_object_or_404(Flight, id=flight_id)
+    form = FlightForm(instance=flight)
+    if request.method == 'POST':
+        form = FlightForm(request.POST, instance=flight)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'content/flight/flight_update.html', context)
+
+
+def delete_flight(request, flight_id):
+    flight = get_object_or_404(Flight, id=flight_id)
+    if request.method == 'POST':
+        flight.delete()
+        return redirect('/')
+    return render(request, 'content/flight/flight_delete.html', {'flight': flight})
+
+
+def company_list(request):
     companies = Company.objects.all()
     context = {'companies': companies}
-    return render(request, 'content/company/list_company.html', context)
+    return render(request, 'content/company/company_list.html', context)
 
 
-def get_company(request, pk):
+def company_detail(request, pk):
     company = get_object_or_404(Company, id=pk)
     context = {'company': company}
-    return render(request, 'content/company/company.html', context)
+    return render(request, 'content/company/company_detail.html', context)
 
 
 def create_company(request):
@@ -101,24 +154,7 @@ def find_flights_data(request):
         return render(request, 'content/flight/find_flights_data.html', context)
 
 
-def find_flight_detail(request, idd):
-    ticket = get_object_or_404(Flight, id=idd)
-    context = {'ticket': ticket}
-    return render(request, 'content/flight/result_find_flight_detail.html', context)
 
-
-def create_flight(request):
-    form = FlightForm()
-    if request.method == 'POST':
-        form = FlightForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-
-    context = {
-        'form': form
-    }
-    return render(request, 'content/flight/flight_create.html', context)
 
 
 def get_airplanes(request):

@@ -43,4 +43,11 @@ class FlightForm(forms.ModelForm):
         fields = '__all__'
 
 
-
+class FlightFilterForm(forms.Form):
+    min_price = forms.IntegerField(label='от', required=False)
+    max_price = forms.IntegerField(label='до', required=False)
+    ordering = forms.ChoiceField(label='сортировка', required=False, choices=[
+        ['number_flight', 'по № рейса'],
+        ['price', 'дешевые'],
+        ['-price', 'дорогие'],
+    ])

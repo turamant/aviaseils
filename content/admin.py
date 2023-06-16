@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from content.models import Company, City, SeatClass, AirPlane, Flight
+from content.models import Company, City, SeatClass,\
+    AirPlane, Flight, Client
 
 
 # Register your models here.
@@ -54,4 +55,15 @@ class AdminFlight(admin.ModelAdmin):
                     'data_arrive',
                     'price',
                     )
+
+
+@admin.register(Client)
+class AdminFlight(admin.ModelAdmin):
+    list_display = ('last_name',
+                    'first_name',
+                    'passport_number',
+                    'email',
+                    'phone_number',
+                    )
+
 

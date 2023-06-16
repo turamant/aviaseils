@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}Result of find ticket DETAIL{% endblock %}
+
+{% block content %}
+<p>!!!!!!!!!!!!!!!!!!!!</p>
+
+<p>Номер рейса: {{ flight.number_flight }}</p>
+<p>Plane: {{ flight.airplane }}</p>
+<p>Компания: {{ flight.company }}</p>
+<p>Вылет из: <b>{{ flight.departure_city }}</b></p>
+<p>Прилет в: <b><i>{{ flight.arrival_city }}</i></b></p>
+<p>Дата вылета: <b>{{ flight.data_departure }}</b></p>
+<p>Время вылета: <b>{{ flight.time_departure }}</b></p>
+<p>Дата прилета: {{ flight.data_arrive }}</p>
+<p>Цена: {{ flight.price|intcomma }} рублей</p>
+
+<p><a href="{% url 'update_flight' flight_id=flight.pk %}">Редактировать</a></p>
+<p><a href="{% url 'delete_flight' flight_id=flight.pk %}">Delete</a></p>
+
+<p><a href="{% url 'find_flights_data' %}">К поиску по дате</a></p>
+<p><a href="{% url 'find_flights' %}">К поиску по городам вылета-прилета</a></p>
+<p><a href="{% url 'index' %}">К главной</a></p>
+
+{% endblock %}

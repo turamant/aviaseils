@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
+<p>Фильтрация билетов по цене</p>
+<form action="" method="get">
+   {{ form.as_p }}
+   <input type="submit" value="Поиск">
+</form>
+
+<h2>All flights!!!</h2>
+<ul>
+{% for fly in flights %}
+   <li><a href="{% url 'flight_detail' flight_id=fly.pk %}"> {{ fly.number_flight }}</a></li>
+
+{% endfor %}
+</ul>
+{% endblock %}

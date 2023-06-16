@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Update company{% endblock %}
+{% block title %}Update flight{% endblock %}
 
 {% block content %}
-<h2>Изменение данных компании</h2>
+<h2>Изменение данных рейса</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>
 </form>
-<p><a href="{% url 'company_list'%}"><button>Cansel</button></a></p>
+<p><a href="{% url 'flight_list'%}"><button>Cansel</button></a></p>
 
 {% endblock %}
